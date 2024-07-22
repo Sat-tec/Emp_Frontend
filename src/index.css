@@ -1,0 +1,31 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* src/index.css or main CSS file */
+
+/* Modal */
+.ReactModal__Overlay {
+  z-index: 10;
+  }
+  
+  .ReactModal__Content {
+    z-index: 10;
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    width: 100%;
+    max-width: 500px;
+    margin: auto;
+  }
+  
+  /* Overlay */
+  .overlay {
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
