@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-// import {useGSAP} from '@gsap/react';
+import {useGSAP} from '@gsap/react';
 import gsap from 'gsap';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAdd } from "@fortawesome/free-solid-svg-icons";
