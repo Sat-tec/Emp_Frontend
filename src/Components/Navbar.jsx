@@ -12,7 +12,7 @@ const Navbar = () => {
   useEffect(() => {
     gsap.fromTo(".navbar", 
       { opacity: 0, y: -30 }, 
-      { opacity: 1, y: 0, duration: 0.5 }
+      { opacity: 1, y: 0, duration: 0.5, ease: "power4.inOut" }
     );
   }, []);
 

@@ -1,16 +1,12 @@
 import React from 'react';
-
 import Navbar from './Components/Navbar';  
 import Home from './Components/Home'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import AddForm from './Components/AddUser';
-import EditUser from './Components/EditUser';
-import ViewUser from './Components/ViewUser';
-// In your main entry file
-
+import AddEmployee from './Components/AddEmployee';
+import UpdateEmployee from './Components/UpdateEmployee';
+import ViewEmployee from './Components/ViewEmployee';
 
 function App() {
-
  
   return (
     <div className="App">
@@ -18,9 +14,9 @@ function App() {
         <Navbar />
         <Routes>
           <Route exact path='/' element={<Home/>} />
-          <Route exact path='/adduser' element={<AddForm />} />
-          <Route exact path='/EditUser/:id' element={<EditUser />} />
-          <Route exact path='/ViewUser/:id' element={<ViewUser />} />
+          <Route exact path='/addEmployee' element={<AddEmployee />} />
+          <Route exact path='/editEmployee/:id' element={<UpdateEmployee />} />
+          <Route exact path='/viewEmployee/:id' element={<ViewEmployee />} />
         </Routes>
        
       </Router>

@@ -1,16 +1,15 @@
-import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom"
-import {useGSAP} from '@gsap/react';
 import gsap from 'gsap';
 import { useNavigate } from "react-router-dom";
+import EmployeeServices from '../Services/EmployeeServices';
 
-const AddUser = () => {
+const AddEmployee = () => {
 
   useEffect(() => {
-    gsap.fromTo(".container", 
-      { opacity: 0, y: 20, scale:0 }, 
-      { opacity: 1, scale: 1, duration: 0.6 }
+    gsap.fromTo(".container",
+      { opacity: 0, x: -200 },
+      { opacity: 1, x: 0, duration: 0.6, ease: "power4.inOut" }
     );
   }, []);
 
@@ -23,21 +22,38 @@ const AddUser = () => {
     phone: "",
   });
 
+  const reset = (e) => {
+    e.preventDefault();
+    setFormData({
+      firstname: "",
+      lastname: "",
+      email: "",
+      address: "",
+      phone: "",
+    })
+  }
+
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
+
+  const saveEmployee = (e) => {
     e.preventDefault();
-    await axios.post("http://localhost:9090/employees", formData);
-    navigate('/')
+    EmployeeServices.saveEmployee(formData)
+    
+    .then((Response) => {
+      console.log("Saved:", Response);
+      navigate('/');
+      
+    }).catch((error) => {
+      console.log("Error: ", error);
+    })
 
-  };
-
+  }
 
 
   return (
-    
 
     <div className="container mt-5 px-4 md:px-60">
       <div className="head bg-purple-800 h-16 flex justify-between items-center px-5">
@@ -55,7 +71,7 @@ const AddUser = () => {
         </div>
       </div>
       <div className="form-container px-4 py-10 md:px-10 md:py-10 shadow-xl">
-        <form onSubmit={handleSubmit} className="flex flex-col">
+        <form onSubmit={saveEmployee} className="flex flex-col">
           <div className="mb-4">
             <label className="block text-gray-700 text-sm font-bold mb-2">
               First Name *
@@ -113,7 +129,7 @@ const AddUser = () => {
               Phone *
             </label>
             <input
-              type="text"
+              type="number"
               name="phone"
               value={formData.phone}
               onChange={handleInputChange}
@@ -121,12 +137,21 @@ const AddUser = () => {
               required
             />
           </div>
-          <div className="flex items-center justify-center">
+          <div className="flex items-center justify-between">
             <button
               type="submit"
-              className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500"
+              className="bg-green-500 hover:bg-green-700 text-white text-xl font-bold py-1 px-4 rounded focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500"
+              
             >
               Submit
+            </button>
+
+            <button
+              type="submit"
+              className="bg-red-400 hover:bg-red-500 text-white font-bold py-1 px-4 rounded text-xl focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500"
+              onClick={reset}
+            >
+              Clear
             </button>
           </div>
         </form>
@@ -135,4 +160,4 @@ const AddUser = () => {
   );
 };
 
-export default AddUser;
+export default AddEmployee;

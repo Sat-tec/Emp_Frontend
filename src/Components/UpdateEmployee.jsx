@@ -1,14 +1,15 @@
-import axios from "axios";
 import React, { useState, useEffect } from "react";
-import { Link, useParams, useNavigate } from "react-router-dom"
+import { Link, useParams, useNavigate } from "react-router-dom";
+import EmployeeServices from '../Services/EmployeeServices';
+
 import gsap from 'gsap';
 
-const EditUser = () => {
+const UpdateEmployee = () => {
 
     useEffect(() => {
         gsap.fromTo(".container",
-            { opacity: 0, y: 20, scale: 0 },
-            { opacity: 1, scale: 1, duration: 0.5 }
+            { opacity: 0, x: -200 },
+      { opacity: 1, x: 0, duration: 0.6, ease: "power4.inOut" }
         );
     }, []);
 
@@ -16,7 +17,8 @@ const EditUser = () => {
 
     const { id } = useParams();
 
-    const [formData, setFormData] = useState({
+    const [employee, setEmployee] = useState({
+        id: id,
         firstname: "",
         lastname: "",
         email: "",
@@ -24,25 +26,55 @@ const EditUser = () => {
         phone: "",
     });
 
-    const handleInputChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
-    };
 
     useEffect(() => {
-        loadUsers();
+        fetchData();
     }, [])
 
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        await axios.put(`http://localhost:9090/employees/${id}`, formData);
-        navigate('/')
+    const fetchData = async () => {
+        try {
+            const response = await EmployeeServices.GetEmployeeById(employee.id);
+            setEmployee(response.data);
+            console.log("Data fetched successfully");
+        } catch (error) {
+            console.log("Error fetching employees:", error);
+        }
     };
 
-    const loadUsers = async () => {
-        const result = await axios.get(`http://localhost:9090/employees/${id}`);
-        setFormData(result.data)
+
+    const handleInputChange = (e) => {
+        setEmployee({ ...employee, [e.target.name]: e.target.value });
+    };
+
+
+
+
+
+    // const handleSubmit = async (e) => {
+    //     e.preventDefault();
+    //     UpateEmployee();
+    //     navigate('/')
+    // };
+
+    const EditEmployee = async (e) => {
+        e.preventDefault();
+        await EmployeeServices.UpdateEmployeeById(employee, id)
+
+            .then((response) => {
+                console.log("Update successfully: ", response);
+                navigate('/');
+
+            }).catch((error) => {
+                console.log("Error: ", error);
+            })
+
     }
+
+
+    // const loadUsers = async () => {
+    //     const result = await axios.get(`http://localhost:9090/employees/${id}`);
+    //     setFormData(result.data)
+    // }
 
     return (
         <div className="container mt-5 px-52">
@@ -51,17 +83,14 @@ const EditUser = () => {
                     Edit Employees
                 </div>
                 <div className="right left text-xl font-semibold text-white">
-                    <Link className="bg-green-500 px-3 text-center" to="/">
-                        {/* <FontAwesomeIcon
-            icon={faAdd}
-            className="text-white text-xl px-1 font-semibold"
-          /> */}
-                        Back
+                    <Link className="bg-red-500 hover:bg-red-400 px-3 py-1 text-center rounded focus:outline-none focus:ring-2 focus:ring-red-600" to="/">
+                    
+                        Cancel
                     </Link>
                 </div>
             </div>
             <div className="form-container p-6 border border-gray-300 bg-white rounded shadow-md">
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={EditEmployee}>
                     <div className="mb-6">
                         <label className="block text-gray-800 text-base font-semibold mb-2">
                             First Name *
@@ -69,7 +98,7 @@ const EditUser = () => {
                         <input
                             type="text"
                             name="firstname"
-                            value={formData.firstname}
+                            value={employee.firstname}
                             onChange={handleInputChange}
                             className="shadow-sm appearance-none border border-gray-300 rounded w-full py-2 px-3 text-gray-800 leading-tight focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500"
                             required
@@ -82,7 +111,7 @@ const EditUser = () => {
                         <input
                             type="text"
                             name="lastname"
-                            value={formData.lastname}
+                            value={employee.lastname}
                             onChange={handleInputChange}
                             className="shadow-sm appearance-none border border-gray-300 rounded w-full py-2 px-3 text-gray-800 leading-tight focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500"
                             required
@@ -95,7 +124,7 @@ const EditUser = () => {
                         <input
                             type="email"
                             name="email"
-                            value={formData.email}
+                            value={employee.email}
                             onChange={handleInputChange}
                             className="shadow-sm appearance-none border border-gray-300 rounded w-full py-2 px-3 text-gray-800 leading-tight focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500"
                             required
@@ -108,7 +137,7 @@ const EditUser = () => {
                         <input
                             type="text"
                             name="address"
-                            value={formData.address}
+                            value={employee.address}
                             onChange={handleInputChange}
                             className="shadow-sm appearance-none border border-gray-300 rounded w-full py-2 px-3 text-gray-800 leading-tight focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500"
                             required
@@ -121,7 +150,7 @@ const EditUser = () => {
                         <input
                             type="text"
                             name="phone"
-                            value={formData.phone}
+                            value={employee.phone}
                             onChange={handleInputChange}
                             className="shadow-sm appearance-none border border-gray-300 rounded w-full py-2 px-3 text-gray-800 leading-tight focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500"
                             required
@@ -130,10 +159,12 @@ const EditUser = () => {
                     <div className="flex items-center justify-center">
                         <button
                             type="submit"
-                            className="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-green-500"
+                            className="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 text-xl rounded focus:outline-none focus:ring-2 focus:ring-green-500"
                         >
                             Submit
                         </button>
+
+
                     </div>
                 </form>
             </div>
@@ -142,4 +173,4 @@ const EditUser = () => {
     )
 }
 
-export default EditUser
+export default UpdateEmployee

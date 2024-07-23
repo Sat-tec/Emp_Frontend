@@ -1,55 +1,51 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from "react-router-dom";
-
-import axios from "axios";
 import gsap from 'gsap';
+import EmployeeServices from '../Services/EmployeeServices';
 
-const ViewUser = () => {
-
+const ViewEmployee = () => {
+   
     useEffect(() => {
-        gsap.fromTo(".mt-5", 
-          { opacity: 0, y: 20, scale:0 }, 
-          { opacity: 1, scale: 1, duration: 0.5 }
+        gsap.fromTo(".mt-5",
+            { opacity: 0, x: -200 },
+            { opacity: 1, x: 0, duration: 0.6, ease: "power4.inOut" }
         );
-      }, []);
+    }, []);
 
-    const [user, setUser] = useState({
+    const { id } = useParams();
+
+    const [employee, setemployee] = useState({
+        id: id,
         firstname: "",
         lastname: "",
         email: "",
         address: "",
         phone: "",
     });
-   
-    const [error, setError] = useState(null);
 
-    const { id } = useParams();
-
+    
     useEffect(() => {
-     
-        loadUser();
-    }, [id]);
+        ViewEmployee();
+    }, []);
 
-    const loadUser = async () => {
+    const ViewEmployee = async () => {
         try {
-            const result = await axios.get(`http://localhost:9090/employees/${id}`);
-            setUser(result.data);
-            setLoading(false);
+            const result = await EmployeeServices.GetEmployeeById(employee.id);
+            setemployee(result.data);
+
         } catch (error) {
             setError(error);
-            setLoading(false);
-        }
-    };
 
-    // if (loading) return <p>Loading...</p>;
-    // if (error) return <p>Error loading user: {error.message}</p>;
+        }
+    }
+
 
 
     return (
         <div className="container mt-5 px-52  w-auto h-auto">
             <div className="head bg-purple-800 h-16 flex justify-between items-center px-5">
                 <div className="left text-2xl font-semibold text-white">
-                    Details of User id: {user.id}
+                    Details of employee id: {employee.id}
                 </div>
 
 
@@ -69,7 +65,7 @@ const ViewUser = () => {
                                 First Name
                             </td>
                             <td className="px-6 py-3 border-b border-gray-200 text-lg">
-                                {user.firstname}
+                                {employee.firstname}
                             </td>
                         </tr>
                         <tr className="w-full">
@@ -77,7 +73,7 @@ const ViewUser = () => {
                                 Last Name
                             </td>
                             <td className="px-6 py-3 border-b border-gray-200 text-lg">
-                                {user.lastname}
+                                {employee.lastname}
                             </td>
                         </tr>
                         <tr className="w-full">
@@ -85,7 +81,7 @@ const ViewUser = () => {
                                 Email
                             </td>
                             <td className="px-6 py-3 border-b border-gray-200 text-lg">
-                                {user.email}
+                                {employee.email}
                             </td>
                         </tr>
                         <tr className="w-full">
@@ -93,7 +89,7 @@ const ViewUser = () => {
                                 Address
                             </td>
                             <td className="px-6 py-3 border-b border-gray-200 text-lg">
-                                {user.address}
+                                {employee.address}
                             </td>
                         </tr>
                         <tr className="w-full">
@@ -101,7 +97,7 @@ const ViewUser = () => {
                                 Phone
                             </td>
                             <td className="px-6 py-3 border-b border-gray-200 text-lg">
-                                {user.phone}
+                                {employee.phone}
                             </td>
                         </tr>
                     </tbody>
@@ -112,4 +108,4 @@ const ViewUser = () => {
     )
 }
 
-export default ViewUser
+export default ViewEmployee
