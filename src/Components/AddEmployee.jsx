@@ -43,7 +43,7 @@ const AddEmployee = () => {
     EmployeeServices.saveEmployee(formData)
     
     .then((Response) => {
-      console.log("Saved:", Response);
+      // console.log("Saved:", Response);
       navigate('/');
       
     }).catch((error) => {

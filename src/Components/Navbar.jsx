@@ -2,7 +2,6 @@ import React, {useEffect} from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faHome } from '@fortawesome/free-solid-svg-icons';
 import { Link } from "react-router-dom";
-import {useGSAP} from '@gsap/react';
 import gsap from 'gsap';
 
 

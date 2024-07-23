@@ -26,7 +26,7 @@ const Home = () => {
       try {
         const response = await EmployeeServices.GetEmployees();
         setEmployees(response.data);  // Ensure data is set correctly
-        console.log("Data fetched successfully");
+        // console.log("Data fetched successfully");
       } catch (error) {
         console.log("Error fetching employees:", error);
       }
@@ -62,19 +62,19 @@ const Home = () => {
         duration: 0.5,
         ease: "power4.inOut",
         onComplete: () => {
-          // Proceed with deletion after animation
+         
           EmployeeServices.DeleteEmployeeById(id)
             .then(() => {
               setEmployees((prevEmployees) =>
                 prevEmployees.filter((employee) => employee.id !== id)
               );
-              // Check if no data available after deletion
+              
               if (employees.length === 1) {
                 setShowNoData(true);
               }
             })
             .catch(error => {
-              console.error("Error deleting employee:", error);
+              console.log("Error deleting employee:", error);
             });
         }
       });
@@ -99,7 +99,6 @@ const Home = () => {
       setIsModalOpen(false);
     }
   };
-
 
   return (
     <main>
