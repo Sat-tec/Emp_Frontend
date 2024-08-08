@@ -83,7 +83,7 @@ const AddEmployee = () => {
               name="firstname"
               value={formData.firstname}
               onChange={handleInputChange}
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500"
+              className="shadow appearance-none border rounded w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500"
               required
             />
           </div>
@@ -99,7 +99,7 @@ const AddEmployee = () => {
               name="lastname"
               value={formData.lastname}
               onChange={handleInputChange}
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500"
+              className="shadow appearance-none border rounded w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500"
               required
             />
           </div>
@@ -114,7 +114,7 @@ const AddEmployee = () => {
               name="email"
               value={formData.email}
               onChange={handleInputChange}
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500"
+              className="shadow appearance-none border rounded w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500"
               required
             />
           </div>
@@ -130,7 +130,7 @@ const AddEmployee = () => {
               name="address"
               value={formData.address}
               onChange={handleInputChange}
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500"
+              className="shadow appearance-none border rounded w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500"
               required
             />
           </div>

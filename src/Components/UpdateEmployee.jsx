@@ -11,7 +11,7 @@ const UpdateEmployee = () => {
     useEffect(() => {
         gsap.fromTo(".container",
             { opacity: 0, x: -200 },
-      { opacity: 1, x: 0, duration: 0.6, ease: "power4.inOut" }
+            { opacity: 1, x: 0, duration: 0.6, ease: "power4.inOut" }
         );
     }, []);
 
@@ -83,67 +83,79 @@ const UpdateEmployee = () => {
             <div className="form-container p-6 border border-gray-300 bg-white rounded shadow-md">
                 <form onSubmit={EditEmployee}>
                     <div className="mb-6">
-                        <label className="block text-gray-800 text-base font-semibold mb-2">
-                            First Name *
-                        </label>
+                        <label className="block text-gray-500 text-xl font-semibold mb-2">
+                            First Name <span className="text-red-500">*</span> </label>
                         <input
+                        autoCorrect="on"
+              autoComplete="off"
                             type="text"
                             name="firstname"
                             value={employee.firstname}
                             onChange={handleInputChange}
-                            className="shadow-sm appearance-none border border-gray-300 rounded w-full py-2 px-3 text-gray-800 leading-tight focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500"
+                            className="shadow appearance-none border rounded w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500"
                             required
                         />
                     </div>
                     <div className="mb-6">
-                        <label className="block text-gray-800 text-base font-semibold mb-2">
-                            Last Name *
+                        <label className="block text-gray-500 text-xl font-semibold mb-2">
+                            {" "}
+                            Last Name <span className="text-red-500">*</span>
                         </label>
                         <input
+                        autoCorrect="on"
+              autoComplete="off"
                             type="text"
                             name="lastname"
                             value={employee.lastname}
                             onChange={handleInputChange}
-                            className="shadow-sm appearance-none border border-gray-300 rounded w-full py-2 px-3 text-gray-800 leading-tight focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500"
+                            className="shadow appearance-none border rounded w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500"
                             required
                         />
                     </div>
                     <div className="mb-6">
-                        <label className="block text-gray-800 text-base font-semibold mb-2">
-                            Email *
+                        <label className="block text-gray-500 text-xl font-semibold mb-2">
+                            Email <span className="text-red-500">*</span>
                         </label>
                         <input
+                        autoCorrect="on"
+              autoComplete="off"
                             type="email"
                             name="email"
                             value={employee.email}
                             onChange={handleInputChange}
-                            className="shadow-sm appearance-none border border-gray-300 rounded w-full py-2 px-3 text-gray-800 leading-tight focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500"
+                            className="shadow appearance-none border rounded w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500"
                             required
                         />
                     </div>
                     <div className="mb-6">
-                        <label className="block text-gray-800 text-base font-semibold mb-2">
-                            Address *
+                        <label className="block text-gray-500 text-xl font-semibold mb-2">
+                            {" "}
+                            Address <span className="text-red-500">*</span>
                         </label>
                         <input
+                        autoCorrect="on"
+              autoComplete="off"
                             type="text"
                             name="address"
                             value={employee.address}
                             onChange={handleInputChange}
-                            className="shadow-sm appearance-none border border-gray-300 rounded w-full py-2 px-3 text-gray-800 leading-tight focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500"
+                            className="shadow appearance-none border rounded w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500"
                             required
                         />
                     </div>
                     <div className="mb-6">
-                        <label className="block text-gray-800 text-base font-semibold mb-2">
-                            Phone *
+                        <label className="block text-gray-500 text-xl font-semibold mb-2">
+                            {" "}
+                            Phone <span className="text-red-500">*</span>
                         </label>
                         <input
+                        autoCorrect="on"
+              autoComplete="off"
                             type="text"
                             name="phone"
                             value={employee.phone}
                             onChange={handleInputChange}
-                            className="shadow-sm appearance-none border border-gray-300 rounded w-full py-2 px-3 text-gray-800 leading-tight focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500"
+                            className="shadow appearance-none border rounded w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500"
                             required
                         />
                     </div>
