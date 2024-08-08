@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import EmployeeServices from '../Services/EmployeeServices';
+import { IoArrowBackCircle } from "react-icons/io5";
+
 
 import gsap from 'gsap';
 
@@ -49,13 +51,6 @@ const UpdateEmployee = () => {
 
 
 
-
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault();
-    //     UpateEmployee();
-    //     navigate('/')
-    // };
-
     const EditEmployee = async (e) => {
         e.preventDefault();
         await EmployeeServices.UpdateEmployeeById(employee, id)
@@ -71,21 +66,17 @@ const UpdateEmployee = () => {
     }
 
 
-    // const loadUsers = async () => {
-    //     const result = await axios.get(`http://localhost:9090/employees/${id}`);
-    //     setFormData(result.data)
-    // }
-
     return (
         <div className="container mt-5 px-52">
             <div className="head bg-purple-800 h-16 flex justify-between items-center px-5">
-                <div className="left text-2xl font-semibold text-white">
+                <div className="left text-2xl font-bold text-white">
                     Edit Employees
                 </div>
-                <div className="right left text-xl font-semibold text-white">
-                    <Link className="bg-red-500 hover:bg-red-400 px-3 py-1 text-center rounded focus:outline-none focus:ring-2 focus:ring-red-600" to="/">
-                    
-                        Cancel
+                <div className=" text-xl justify-center items-center font-semibold text-white">
+                    <Link className="bg-green-500 px-2 rounded-sm text-center text-xl flex items-center" to="/">
+
+                        <IoArrowBackCircle className="text-white px-2 text-4xl" />
+                        BACK
                     </Link>
                 </div>
             </div>
@@ -161,7 +152,7 @@ const UpdateEmployee = () => {
                             type="submit"
                             className="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 text-xl rounded focus:outline-none focus:ring-2 focus:ring-green-500"
                         >
-                            Submit
+                            SUBMIT
                         </button>
 
 

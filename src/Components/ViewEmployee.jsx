@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from "react-router-dom";
+import { IoArrowBackCircle } from "react-icons/io5";
+
 import gsap from 'gsap';
 import EmployeeServices from '../Services/EmployeeServices';
 
 const ViewEmployee = () => {
-   
+
     useEffect(() => {
         gsap.fromTo(".mt-5",
             { opacity: 0, x: -200 },
@@ -23,7 +25,7 @@ const ViewEmployee = () => {
         phone: "",
     });
 
-    
+
     useEffect(() => {
         ViewEmployee();
     }, []);
@@ -49,9 +51,11 @@ const ViewEmployee = () => {
                 </div>
 
 
-                <div className="right left text-xl font-semibold text-white">
-                    <Link className="bg-green-500 px-3 text-center" to="/">
-                        Back
+                <div className=" text-xl justify-center items-center text-white font-semibold">
+                    <Link className="bg-green-500 px-2 rounded-sm text-center font-semibold text-xl flex items-center" to="/">
+
+                        <IoArrowBackCircle className="text-white px-2 text-4xl" />
+                        BACK
                     </Link>
                 </div>
             </div>

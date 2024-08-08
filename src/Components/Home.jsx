@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
 import gsap from 'gsap';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAdd } from "@fortawesome/free-solid-svg-icons";
 import { Link, useNavigate } from "react-router-dom";
+import { IoMdAddCircle } from "react-icons/io";
+import { BsFillEyeFill } from "react-icons/bs";
+import { FaEdit } from "react-icons/fa";
+import { RiDeleteBin6Line } from "react-icons/ri";
+
+
 import ConfirmationModal from './ConfirmationModal';
 import EmployeeServices from "../Services/EmployeeServices";
 
@@ -62,13 +66,13 @@ const Home = () => {
         duration: 0.5,
         ease: "power4.inOut",
         onComplete: () => {
-         
+
           EmployeeServices.DeleteEmployeeById(id)
             .then(() => {
               setEmployees((prevEmployees) =>
                 prevEmployees.filter((employee) => employee.id !== id)
               );
-              
+
               if (employees.length === 1) {
                 setShowNoData(true);
               }
@@ -109,38 +113,40 @@ const Home = () => {
           </div>
           <div className="right text-xl font-semibold text-white">
             <Link
-              className="bg-green-600 hover:bg-green-700 text-white font-semibold py-1 px-2 focus:outline-none focus:ring-2 focus:ring-green-400"
+              className="bg-green-600 hover:bg-green-700 text-white font-semibold py-1 px-3 rounded-sm focus:outline-none focus:ring-2 focus:ring-green-400 flex items-center"
               to="/addEmployee"
             >
-              <FontAwesomeIcon
-                icon={faAdd}
-                className="text-white text-xl mx-2 font-semibold"
-              />
-              Add
+              <IoMdAddCircle className="text-white text-3xl mr-2" />
+              ADD
             </Link>
+
           </div>
         </div>
 
-        <div className="relative overflow-x-auto mx-5 my-5">
-          <table className=" min-w-full text-sm text-center text-gray-500 dark:text-gray-400 shadow-purple-200 shadow-md mb-5">
-            <thead className="text-[1rem] text-gray-700 uppercase bg-gray-50 border-b-2 border-b-black">
+        <div className="relative overflow-x-auto mx-5 my-5"
+         style={{
+          boxShadow: '0 -2px 6px -1px #e9d5ff',
+        }}
+        >
+          <table className=" min-w-full text-sm text-center dark:text-gray-400 shadow-purple-200 shadow-md mb-5 border-collapse">
+            <thead className="text-[1rem] text-gray-700 uppercase bg-white border-b-2 border-b-black">
               <tr>
-                <th scope="col" className="px-2 md:px-6 py-3 text-xl md:text-2xl">
+                <th scope="col" className="px-2 md:px-6 py-3 text-xl md:text-2xl border-r border-gray-300">
                   #
                 </th>
-                <th scope="col" className="px-2 md:px-6 py-3">
+                <th scope="col" className="px-2 md:px-6 py-3 border-r border-gray-300">
                   First Name
                 </th>
-                <th scope="col" className="px-2 md:px-6 py-3">
+                <th scope="col" className="px-2 md:px-6 py-3 border-r border-gray-300">
                   Last Name
                 </th>
-                <th scope="col" className="px-2 md:px-6 py-3">
+                <th scope="col" className="px-2 md:px-6 py-3 border-r border-gray-300">
                   Email
                 </th>
-                <th scope="col" className="px-2 md:px-6 py-3">
+                <th scope="col" className="px-2 md:px-6 py-3 border-r border-gray-300">
                   Address
                 </th>
-                <th scope="col" className="px-2 md:px-6 py-3">
+                <th scope="col" className="px-2 md:px-6 py-3 border-r border-gray-300">
                   Phone
                 </th>
                 <th scope="col" className="px-2 md:px-6 py-3">
@@ -152,50 +158,55 @@ const Home = () => {
               {employees.length > 0 ? (
                 employees.map((employee, index) => (
                   <tr
-                    id={`employee-row-${employee.id}`}  // Ensure each row has a unique ID
+                    id={`employee-row-${employee.id}`}  
                     key={employee.id}
-                    className={`bg-white border-b dark:bg-gray-800 dark:border-gray-700 ${index % 2 === 0 ? 'dark:bg-gray-100' : 'bg-gray-200'}`}
-                  >
+                    // className={`bg-white border-b dark:bg-gray-800 dark:border-gray-700 ${index % 2 === 0 ? ' bg-gray-300' : 'bg-gray-800 bg-gray-400'}`}
+                    className={`border-b ${index % 2 !== 0 ? 'bg-gray-50' : 'bg-gray-100'} dark:bg-gray-800 dark:border-gray-700`}>
+
+                    
                     <th
                       scope="row"
-                      className="px-6 py-4 font-medium text-gray-900 text-lg whitespace-nowrap dark:text-white"
+                      className="px-6 py-4 font-medium text-gray-900 text-lg whitespace-nowrap dark:text-white border-r border-gray-300"
                     >
                       {index + 1}
                     </th>
-                    <td className="px-6 py-4 text-gray-900 text-lg">
+                    <td className="px-6 py-4 text-gray-900 text-lg border-r border-gray-300">
                       {employee.firstname}
                     </td>
-                    <td className="px-6 py-4 text-gray-900 text-lg">
+                    <td className="px-6 py-4 text-gray-900 text-lg border-r border-gray-300">
                       {employee.lastname}
                     </td>
-                    <td className="px-6 py-4 text-gray-900 text-lg">
+                    <td className="px-6 py-4 text-gray-900 text-lg border-r border-gray-300">
                       {employee.email}
                     </td>
-                    <td className="px-6 py-4 text-gray-900 text-lg">
+                    <td className="px-6 py-4 text-gray-900 text-lg border-r border-gray-300">
                       {employee.address}
                     </td>
-                    <td className="px-6 py-4 text-gray-900 text-lg">
+                    <td className="px-6 py-4 text-gray-900 text-lg border-r border-gray-300">
                       {employee.phone}
                     </td>
-                    <td className="px-6 py-4 text-gray-900 text-lg">
+                    <td className=" text-gray-900 py-2 text-lg flex justify-evenly items-center">
                       <Link
-                        className="bg-blue-500 px-7 py-2 text-center text-white"
+                        className="py-2 text-center text-white flex"
                         to={`/viewEmployee/${employee.id}`}
                       >
-                        View
+                        <BsFillEyeFill className="text-blue-500 text-2xl" /> {/* Adjust size if needed */}
                       </Link>
+
                       <button
-                        className="bg-purple-500 px-7 py-2 text-center text-white mx-2"
+                        className="text-center"
                         onClick={(e) => EditEmployee(e, employee.id)}
                       >
-                        Edit
+                        <FaEdit className="text-yellow-500 text-2xl"/>
+
                       </button>
 
                       <button
-                        className="bg-red-400 px-7 py-2 text-center text-white"
+                        className="text-center"
                         onClick={() => handleDeleteClick(employee.id)}
                       >
-                        Delete
+                        <RiDeleteBin6Line className="text-red-500 text-2xl"/>
+
                       </button>
                     </td>
                   </tr>
