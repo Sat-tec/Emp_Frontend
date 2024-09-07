@@ -1,6 +1,8 @@
 import axios from "axios";
 
 const SAVE_EMPLOYEE = "http://localhost:9090/employees";
+const SEARCH_EMPLOYEES = "http://localhost:9090/employees/search";
+
 
 class EmployeeServices {
     saveEmployee(formData){
@@ -13,6 +15,11 @@ class EmployeeServices {
 
     GetEmployeeById(id){
         return axios.get(SAVE_EMPLOYEE + "/"+id);
+    }
+
+
+    searchEmployeesByName(name) {
+        return axios.get(SEARCH_EMPLOYEES, { params: { name } });
     }
 
     DeleteEmployeeById(id){

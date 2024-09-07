@@ -18,13 +18,13 @@ const ConfirmationModal = ({ isOpen, onClose, onConfirm }) => {
         <div className="flex justify-end gap-4">
           <button
             onClick={onClose}
-            className="bg-gray-300 text-gray-700 px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-gray-500"
+            className="bg-gray-100 opacity-2 text-gray-800 border px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-gray-500 hover:bg-gray-200"
           >
             Cancel
           </button>
           <button
             onClick={onConfirm}
-            className="bg-green-600 text-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-green-500"
+            className="bg-green-600 text-white appearance-none px-7 py-2 rounded outline-none focus:outline-none focus:ring-2 focus:ring-green-500 hover:bg-green-700"
           >
             OK
           </button>

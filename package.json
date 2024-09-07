@@ -17,7 +17,7 @@
     "@gsap/react": "^2.1.1",
     "@headlessui/react": "^2.1.2",
     "@heroicons/react": "^2.1.5",
-    "axios": "^1.7.2",
+    "axios": "^2.0.0",
     "empfrontend": "file:",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
