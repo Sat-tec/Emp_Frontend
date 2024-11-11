@@ -1,7 +1,7 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 input[type="number"]::-webkit-outer-spin-button,
@@ -10,14 +10,90 @@ input[type="number"]::-webkit-inner-spin-button {
   margin: 0;
 }
 
-/* .smooth-height {
-  transition: max-height 0.5s linear;
-  overflow: hidden;
-}  */
+.custom-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
 
-/* input[type="number"] {
-  -moz-appearance: textfield;
-} */
+.actions-container {
+  display: flex;
+  gap: 1rem;
+}
 
-/* src/index.css or main CSS file */
+.add-text {
+  display: inline;
+}
 
+/* Mobile Layout */
+@media (max-width: 640px) {
+  .custom-header {
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .updateemployee,
+  .addemployee,
+  .viewemployee {
+    padding: 0 1rem 0 1rem;
+  }
+}
+
+.appname-full {
+  display: inline;
+}
+.appname-short {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  .appname-full {
+    display: none;
+  }
+  .appname-short {
+    display: inline;
+  }
+
+  .search-form {
+    width: 100%;
+  }
+
+  .actions {
+    gap: 0.6rem;
+  }
+
+  .bg-green-600 {
+    padding: 0.5rem 1.5rem;
+  }
+
+  /* Show the separator only on mobile */
+  .separator.mobile-only {
+    display: block;
+  }
+}
+
+/* Default Layout (Larger Screens) */
+@media (min-width: 640px) {
+  .table-cell {
+    display: table-cell;
+  }
+}
+
+/* For Small Screens (Mobile) */
+@media (max-width: 640px) {
+  .table-cell {
+    display: block;
+    width: 100%;
+    padding: 0.5rem;
+    text-align: left;
+  }
+}
+
+.separator {
+  width: 300%;
+  height: 1px;
+  background-color: #ddd;
+  margin: 0.7rem 0;
+  display: none;
+}

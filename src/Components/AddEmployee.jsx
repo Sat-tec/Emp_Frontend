@@ -53,7 +53,7 @@ const AddEmployee = () => {
   };
 
   return (
-    <div className="container mt-5 px-4 md:px-60">
+    <div className="addemployee container mt-5 mx-auto">
       <div className="head bg-purple-800 h-16 flex justify-between items-center px-5">
         <div className="left text-2xl font-bold text-white">New Employee</div>
         <div className=" text-xl justify-center items-center text-white">
@@ -61,7 +61,6 @@ const AddEmployee = () => {
             className="bg-green-500 px-2 rounded-sm text-center text-xl flex items-center"
             to="/"
           >
-         
             <IoArrowBackCircle className="text-white px-2 text-4xl" />
             BACK
           </Link>

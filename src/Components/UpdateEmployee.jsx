@@ -59,7 +59,7 @@ const UpdateEmployee = () => {
   };
 
   return (
-    <div className="container mt-5 px-52">
+    <div className="updateemployee container mt-5 mx-auto">
       <div className="head bg-purple-800 h-16 flex justify-between items-center px-5">
         <div className="left text-2xl font-bold text-white">Edit Employees</div>
         <div className=" text-xl justify-center items-center font-semibold text-white">
