@@ -1,7 +1,9 @@
 import axios from "axios";
 
-const SAVE_EMPLOYEE = "http://localhost:9090/employees";
-const SEARCH_EMPLOYEES = "http://localhost:9090/employees/search";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+const SAVE_EMPLOYEE = `${API_BASE_URL}/employees`;
+const SEARCH_EMPLOYEES = `${API_BASE_URL}/employees/search`;
+console.log("API Base URL:", import.meta.env.VITE_API_BASE_URL);
 
 
 class EmployeeServices {
