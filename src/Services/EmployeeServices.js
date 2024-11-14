@@ -5,7 +5,7 @@ const SAVE_EMPLOYEE = `${API_BASE_URL}/employees`;
 const SEARCH_EMPLOYEES = `${API_BASE_URL}/employees/search`;
 console.log("API Base URL:", import.meta.env.VITE_API_BASE_URL);
 
-
+// Example
 class EmployeeServices {
     saveEmployee(formData){
         return axios.post(SAVE_EMPLOYEE, formData);
