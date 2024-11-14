@@ -194,7 +194,7 @@ const Home = () => {
             <tbody className="smooth-height">
               {employees.length > 0 ? (
                 employees.map((employee, index) => (
-                  <tr>
+                  <tr key={employee.id}>
                     <td className="px-6 py-4 font-medium text-gray-900 text-lg whitespace-nowrap border-r border-gray-300">
                       {index + 1}
                     </td>
