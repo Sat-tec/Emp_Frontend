@@ -36,15 +36,30 @@ const AddEmployee = () => {
   };
 
   const handleInputChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+  
+    if (name === "phone") {
+      // Allow only digits and ensure max length of 10
+      const phoneRegex = /^[0-9]*$/;
+      if (phoneRegex.test(value) && value.length <= 10) {
+        setFormData({ ...formData, [name]: value });
+      }
+    } else if (name === "firstname" || name === "lastname") {
+      // Allow only alphabets for names
+      const nameRegex = /^[a-zA-Z\s]*$/;
+      if (nameRegex.test(value)) {
+        setFormData({ ...formData, [name]: value });
+      }
+    } else {
+      setFormData({ ...formData, [name]: value });
+    }
   };
-
+  
   const saveEmployee = (e) => {
     e.preventDefault();
+  
     EmployeeServices.saveEmployee(formData)
-
       .then((Response) => {
-        // console.log("Saved:", Response);
         navigate("/");
       })
       .catch((error) => {

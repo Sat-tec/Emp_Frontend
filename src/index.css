@@ -26,6 +26,11 @@ input[type="number"]::-webkit-inner-spin-button {
   display: inline;
 }
 
+.head {
+  padding-top: 0.6rem;
+  padding-bottom: 0.6rem;
+}
+
 /* Mobile Layout */
 @media (max-width: 640px) {
   .custom-header {
@@ -51,6 +56,7 @@ input[type="number"]::-webkit-inner-spin-button {
   .appname-full {
     display: none;
   }
+
   .appname-short {
     display: inline;
   }
@@ -59,12 +65,44 @@ input[type="number"]::-webkit-inner-spin-button {
     width: 100%;
   }
 
-  .actions {
+  .actions-container {
     gap: 0.6rem;
   }
 
-  .bg-green-600 {
-    padding: 0.5rem 1.5rem;
+  .actions {
+    gap: 0.5rem;
+    padding: 0 1rem;
+  }
+
+  .head {
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+    padding-top: 0.2rem;
+    padding-bottom: 0.7rem;
+  }
+
+  .main {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
+  .data-table {
+    margin-left: 0rem;
+    margin-right: 0rem;
+  }
+
+  .add-btn {
+    padding: 0.3rem 1rem;
+  }
+
+  .headings {
+    font-size: 0.8rem;
+    font-weight: 900;
+  }
+
+  .search-bar {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
   }
 
   /* Show the separator only on mobile */

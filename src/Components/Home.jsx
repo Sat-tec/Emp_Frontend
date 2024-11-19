@@ -88,22 +88,53 @@ const Home = () => {
     }
   }, [showNoData]);
 
+  // const deleteEmployee = async (id) => {
+  //   const rowElement = document.querySelector(`#employee-row-${id}`);
+  //   if (rowElement) {
+  //     gsap.to(rowElement, {
+  //       opacity: 0,
+  //       height: 0,
+  //       x: -10,
+  //       duration: 0.5,
+  //       ease: "power4.inOut",
+  //       onComplete: () => {
+  //         EmployeeServices.DeleteEmployeeById(id)
+  //           .then(() => {
+  //             setEmployees((prevEmployees) =>
+  //               prevEmployees.filter((employee) => employee.id !== id)
+  //             );
+
+  //             if (employees.length === 1) {
+  //               setShowNoData(true);
+  //             }
+  //           })
+  //           .catch((error) => {
+  //             console.log("Error deleting employee:", error);
+  //           });
+  //       },
+  //     });
+  //   }
+  // };
+
   const deleteEmployee = async (id) => {
     const rowElement = document.querySelector(`#employee-row-${id}`);
     if (rowElement) {
+      // Faster disappearing animation for the row
       gsap.to(rowElement, {
         opacity: 0,
         height: 0,
         x: -10,
-        duration: 0.5,
+        duration: 0.2,  // Reduced the duration for faster animation
         ease: "power4.inOut",
         onComplete: () => {
+          // Once the row disappears, delete the employee
           EmployeeServices.DeleteEmployeeById(id)
             .then(() => {
               setEmployees((prevEmployees) =>
                 prevEmployees.filter((employee) => employee.id !== id)
               );
-
+  
+              // Check if there are no employees left
               if (employees.length === 1) {
                 setShowNoData(true);
               }
@@ -115,7 +146,7 @@ const Home = () => {
       });
     }
   };
-
+  
   const EditEmployee = async (e, id) => {
     e.preventDefault();
     navigate(`/editEmployee/${id}`);
@@ -135,9 +166,9 @@ const Home = () => {
   };
 
   return (
-    <main className="w-full mx-auto px-5">
+    <main className="main w-full mx-auto px-5">
       <div className="cont bg-white h-auto mt-6 shadow-xl">
-        <div className="head bg-purple-800 h-auto py-2 px-5 custom-header">
+        <div className="head bg-purple-800 h-auto px-5 custom-header">
           <div className="title text-2xl font-semibold text-white">
             Manage Employees
           </div>
@@ -151,13 +182,13 @@ const Home = () => {
                 type="search"
                 value={searchTerm}
                 onChange={handleChange}
-                className="w-full shadow appearance-none border rounded px-3 py-1 text-gray-700 leading-tight focus:outline-none"
+                className="search-bar w-full shadow appearance-none border rounded px-3 py-1 text-gray-700 leading-tight focus:outline-none"
                 placeholder="Search"
               />
             </form>
 
             <Link
-              className="bg-green-600 hover:bg-green-700 text-white font-semibold py-1 px-3 rounded-sm flex items-center justify-center"
+              className="add-btn bg-green-600 hover:bg-green-700 text-white font-semibold py-1 px-3 rounded-sm flex items-center justify-center"
               to="/addEmployee"
             >
               <IoMdAddCircle className="text-white text-3xl mr-2" />
@@ -166,9 +197,9 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="relative overflow-x-auto mx-5 my-5 shadow-xl">
+        <div className="data-table relative overflow-x-auto mx-5 my-5 shadow-xl">
           <table className="min-w-full text-sm text-center dark:text-gray-400 shadow-purple-200 shadow-md mb-5 border-collapse transition-all duration-500 ease-linear">
-            <thead className="text-[1rem] text-gray-700 uppercase bg-white border-b-2 border-b-black">
+            <thead className="headings text-[1rem] text-gray-700 uppercase bg-white border-b-2 border-b-black">
               <tr>
                 <th className="px-2 md:px-6 py-3 text-xl md:text-2xl border-r border-gray-300">
                   #
@@ -179,10 +210,10 @@ const Home = () => {
                 <th className="px-2 md:px-6 py-3 border-r border-gray-300">
                   Last Name
                 </th>
-                <th className="px-2 md:px-6 py-3 border-r border-gray-300 ">
+                <th className="px-2 md:px-6 hidden md:table-cell py-3 border-r border-gray-300">
                   Email
                 </th>
-                <th className="px-2 md:px-6 py-3 border-r border-gray-300">
+                <th className="px-2 md:px-6 py-3 hidden md:table-cell border-r border-gray-300">
                   Address
                 </th>
                 <th className="px-2 md:px-6 py-3 border-r border-gray-300 ">
@@ -194,26 +225,27 @@ const Home = () => {
             <tbody className="smooth-height">
               {employees.length > 0 ? (
                 employees.map((employee, index) => (
-                  <tr key={employee.id}>
+                  <tr key={employee.id} id={`employee-row-${employee.id}`}>
+
                     <td className="px-6 py-4 font-medium text-gray-900 text-lg whitespace-nowrap border-r border-gray-300">
                       {index + 1}
                     </td>
-                    <td className="px-6 py-4 text-gray-900 text-lg border-r border-gray-300">
+                    <td className="px-6 py-4 text-gray-900 whitespace-nowrap text-lg border-r border-gray-300">
                       {employee.firstname}
                     </td>
-                    <td className="px-6 py-4 text-gray-900 text-lg border-r border-gray-300">
+                    <td className="px-6 py-4 text-gray-900 whitespace-nowrap text-lg border-r border-gray-300">
                       {employee.lastname}
                     </td>
-                    <td className="px-6 py-4 text-gray-900 text-lg border-r border-gray-300">
+                    <td className="px-6 py-4 text-gray-900 hidden md:table-cell whitespace-nowrap text-lg border-r border-gray-300">
                       {employee.email}
                     </td>
-                    <td className="px-6 py-4 text-gray-900 text-lg border-r border-gray-300">
+                    <td className="px-6 py-4 text-gray-900 hidden md:table-cell whitespace-nowrap text-lg border-r border-gray-300">
                       {employee.address}
                     </td>
-                    <td className="px-6 py-4 text-gray-900 text-lg border-r border-gray-300">
+                    <td className="px-6 py-4 text-gray-900 whitespace-nowrap text-lg border-r border-gray-300">
                       {employee.phone}
                     </td>
-                    <td className="actionstext-gray-900 py-2 text-lg flex justify-evenly items-center">
+                    <td className="actions text-gray-900 whitespace-nowrap py-2 text-lg flex justify-evenly items-center">
                       <Link
                         className="py-2 text-center text-white flex"
                         to={`/viewEmployee/${employee.id}`}

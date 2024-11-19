@@ -58,8 +58,8 @@ const ViewEmployee = () => {
           </Link>
         </div>
       </div>
-      <div className="table-container  px-9 py-11  shadow-xl">
-        <table className="min-w-full bg-white border border-gray-300 table-fixed">
+      <div className="table-container shadow-xl overflow-auto">
+        <table className="min-w-full bg-white overflow-auto border border-gray-300 table-fixed">
           <tbody>
             <tr className="w-full">
               <td className="px-4 py-3 border-b border-gray-200 bg-gray-50 text-left font-semibold text-lg">
@@ -81,7 +81,7 @@ const ViewEmployee = () => {
               <td className="px-4 py-3 border-b border-gray-200 bg-gray-50 text-left font-semibold text-lg">
                 Email
               </td>
-              <td className="px-6 py-3 border-b border-gray-200 text-lg">
+              <td className="px-6 py-3 border-bborder-gray-200 text-lg">
                 {employee.email}
               </td>
             </tr>

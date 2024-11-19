@@ -10,7 +10,7 @@
     "preview": "vite preview",
     "build:css": "tailwindcss build src/input.css -o src/output.css",
     "watch:css": "tailwindcss build src/input.css -o src/output.css --watch",
-    "start": "react-scripts start --host 192.168.43.138",
+    "start": "vite",
     "eject": "react-scripts eject"
   },
   "dependencies": {

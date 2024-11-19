@@ -42,7 +42,17 @@ const UpdateEmployee = () => {
   };
 
   const handleInputChange = (e) => {
-    setEmployee({ ...employee, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+  
+    if (name === "phone") {
+      // Allow only digits and ensure max length of 10
+      const phoneRegex = /^[0-9]*$/;
+      if (phoneRegex.test(value) && value.length <= 10) {
+        setEmployee({ ...employee, [name]: value });
+      }
+    } else {
+      setEmployee({ ...employee, [name]: value });
+    }
   };
 
   const EditEmployee = async (e) => {
